@@ -3,7 +3,7 @@ __author__ = 'Qian'
 
 
 from MyHandlers.Demo import DemoHandler
-from MyHandlers.ClinicAppointment import LoginHandler,ValidateHandler,ChooseDroctorHandler
+from MyHandlers.ClinicAppointment import LoginHandler,ValidateHandler,ChooseDroctorHandler, TestHandler
 
 url=[
     (r'/', DemoHandler),
@@ -11,5 +11,6 @@ url=[
     (r'/PatientValidate/', ValidateHandler),
     (r'/ChooseDoctor/', ChooseDroctorHandler),
     (r'/MakeAppointment/', ChooseDroctorHandler),
+    (r'/Test/', TestHandler),
 
     ]
