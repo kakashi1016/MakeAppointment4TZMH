@@ -33,3 +33,7 @@ class DemoHandler(tornado.web.RequestHandler):
         # print(json.load(response.body))
         #lst = ["python","www.itdiffer.com","qiwsir@gmail.com"]
         #self.render("Demo.html", info=lst)
+
+
+
+

@@ -31,8 +31,29 @@ print '-------'
 print type(uuid.uuid1().hex)
 
 
-session = SessionData('22ssss', 'ererere')
-print session
-print session.session_id
+
+
+
+import httplib, urllib
+
+httpClient = None
+try:
+    params = urllib.urlencode({'action': 'patients', 'cardno': 31683536, 'name':r'杨骞'})
+    headers = {"Content-type": "application/x-www-form-urlencoded"
+                    , "Accept": "text/plain"}
+
+    httpClient = httplib.HTTPConnection("122.226.141.18", 27016, timeout=30)
+    httpClient.request("POST", "/wsgh/AjaxHelper.aspx", params, headers)
+
+    response = httpClient.getresponse()
+    print response.status
+    print response.reason
+    print response.read()
+    print response.getheaders() #获取头信息
+except Exception, e:
+    print e
+finally:
+    if httpClient:
+        httpClient.close()
 
 

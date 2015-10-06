@@ -3,44 +3,221 @@
 <head>
     <meta charset="utf-8">
     <title>市立医院移动预约平台</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link href="{{ static_url('css/JQM/jquery.mobile-1.4.5.min.css') }}" rel="stylesheet" >
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <link href="{{ static_url('css/JQM/jquery.mobile-1.4.5.min.css') }}" rel="stylesheet">
     <script src="{{ static_url('js/JQM/jquery.4.JQM.min.js') }}"></script>
     <script src="{{ static_url('js/JQM//jquery.mobile-1.4.5.min.js') }}"></script>
 </head>
+<script type="text/javascript">
+    function ShowForm(type, btn) {
+        if (type == 1) {
+            document.getElementById("hiddenDIV").style.display = "";
+            $("#btn_new").removeAttr("disabled");
+            btn.disabled = true;
+        } else {
+            document.getElementById("hiddenDIV").style.display = "none";
+            $("#btn_old").removeAttr("disabled");
+        }
 
+        return type;
+    }
+    function GetPatienInfo() {
+        var str_mrn = $('#pMrn').val();
+        var str_pName = $('#pName').val().trim();
+        var msg = IsInteger(str_mrn);
+        if (msg.trim().length < 2 && str_pName.length == 0) {
+            msg = "对不起，您未输入您的姓名!";
+        }
+        if (msg.length > 2) {
+            alert('输入有误!');
+        } else {
+
+            $.ajax({
+                type: 'POST',
+                url: '/Test/Ajax/',
+                data: {
+                    _xsrf: getCookie('_xsrf'),
+                    action: 'patients',
+                    cardno: '31683536',//str_mrn,
+                    name: '杨骞'//str_pName//encodeURI(encodeURI(str_pName))
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (data) {
+                    if (data.msg == "false") //服务器返回false，就将validatePassword2的值改为pwd2Error，这是异步，需要考虑返回时间
+                    {
+
+                        return;
+                    }
+                },
+                error: function (data) {
+                    alert(data);
+                }
+            });
+
+
+
+        }
+
+    }
+    function getCookie(name) {
+        var c = document.cookie.match("\\b" + name + "=([^;]*)\\b");
+        return c ? c[1] : undefined;
+    }
+    function IsInteger(str) {
+        str = str.trim();
+        if (str.length != 0) {
+            reg = /^[-+]?\d*$/;
+            if (!reg.test(str)) {
+                return "对不起，您输入的就诊卡号格式不正确!";
+                //alert("对不起，您输入的整数类型格式不正确!");//请将“整数类型”要换成你要验证的那个属性名称！
+            } else {
+                return "";
+            }
+        }
+    }
+
+</script>
 <body>
-	<div data-role="page" id="Login" data-theme="b">  
-        <!--<div data-role="header" id="LoginHeader" data-position="fixed">    -->
-            <!--<h1>市立医院移动预约平台</h1>   -->
-        <!--</div>  -->
-        <div data-role="content" id="Logincontent"> 
-            <br/> 
-            <form action="" method="post">  
-              
-                <div data-role="fieldcontain">  
-                    <label for="pMrn">就诊号</label>  
-                    <input type="number" name="pMrn" id="pMrn" value=""  />  
-                </div>   
-                
-                <div data-role="fieldcontain">  
-                    <label for="pName">姓名</label>  
-                    <input type="text" name="pName" id="pName" value=""  />  
-                </div>   
-                <br/>  
-                <input type="button" name="oldPatient" value="老病人预约"  />  
-                <input type="button" name="newPatient" value="新病人预约"  />  
+<div data-role="page" id="Login" data-theme="b">
+
+    <!--<div data-role="header" id="LoginHeader" data-position="fixed">    -->
+    <!--<h1>市立医院移动预约平台</h1>   -->
+    <!--</div>  -->
+    <div data-role="content" id="Logincontent">
+
+
+        <button id="btn_old" onclick="ShowForm(1,this)">老病人预约</button>
+        <div id="hiddenDIV" align="center" style="display:none;padding:5px 20px 20px 20px;">
+            <form action="" method="post">
+                {% raw xsrf_form_html() %}
+
+                <div data-role="fieldcontain">
+                    <label for="pMrn" style="text-align:left;">就诊号</label>
+                    <input type="number" name="pMrn" id="pMrn" value=""/>
+                </div>
+
+                <div data-role="fieldcontain">
+                    <label for="pName" style="text-align:left;">姓名</label>
+                    <input type="text" name="pName" id="pName" value=""/>
+                </div>
+                <div id="loginTag" style="text-align:left;">rtrtrt3</div>
+
+
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                    </div>
+                    <div class="ui-block-b">
+                        <button onclick="GetPatienInfo()">下一步</button>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+
+
             </form>
+        </div>
+
+        <button id="btn_new" onclick="ShowForm(0,this)">新病人预约</button>
+
+        <br/>
+
+        <br/>
+        <hr style="height:3px;border:none;border-top:3px double red;"/>
+
+    </div>
+    <div data-role="footer" id="footer" data-position="fixed">
+        <h4>台州市立医院-信息中心©2015</h4>
+    </div>
+</div>
+<div data-role="page" id="Validate" data-fullscreen="true" data-theme="b">
+    <script type="javascript">
+        function HideandShowForm(int
+        type
+        )
+        {
+            if (type == 1) {
+
+            } else {
+
+            }
+
+        }
+    </script>
+    <!--<div data-role="header" data-position="fixed">    -->
+    <!--<h1>个人信息核对</h1>   -->
+    <!--</div>  -->
+    <div data-role="content">
+        <form action="" method="post">
+
+            <div data-role="fieldcontain">
+                <label for="pMrn">就诊号</label>
+                <input type="number" name="pMrn" id="pMrn" value=""/>
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="pName">姓名</label>
+                <input type="text" name="pName" id="pName" value=""/>
+            </div>
+            <hr style="height:3px;border:none;border-top:2px double red;"/>
+
+
+            <div data-role="fieldcontain">
+                <label for="pICID">身份证号</label>
+                <input type="number" name="pICID" id="pMrn" value=""/>
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="pAge">年龄</label>
+
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <input type="number" placeholder="填入年龄" name="pAge" id="pAge" value=""/>
+                    </div>
+                    <div class="ui-block-b">
+                        <select name="pAgeUnit" id="pAgeUnit">
+                            <option value="Y">年</option>
+                            <option value="M">月</option>
+                            <option value="D">日</option>
+                        </select>
+                    </div>
+                    <!--<div class="ui-block-c" >-->
+                    <!--<fieldset data-role="controlgroup" data-type="horizontal">-->
+                    <!--<label for="male">男</label>-->
+                    <!--<input type="radio" name="gender" id="male" value="M">-->
+                    <!--<label for="female">女</label>-->
+                    <!--<input type="radio" name="gender" id="female" value="F">-->
+                    <!--</fieldset>-->
+                    <!--</div>-->
+                </div>
+            </div>
+
+            <fieldset data-role="controlgroup" data-type="horizontal">
+                <legend>性别</legend>
+                <label for="male">男</label>
+                <input type="radio" name="gender" id="male" value="M">
+                <label for="female">女</label>
+                <input type="radio" name="gender" id="female" value="F">
+            </fieldset>
+
+            <div data-role="fieldcontain">
+                <label for="pPhone">手机号码</label>
+                <input type="number" name="pPhone" id="pPhone" value=""/>
+            </div>
+
+
+            <div data-role="fieldcontain">
+                <label for="pAddress">地址</label>
+                <input type="text" name="pAddress" id="pAddress" value=""/>
+            </div>
             <br/>
-            <hr style="height:3px;border:none;border-top:3px double red;" />
-            <a href="/PatientValidate/">test</a>
-            <label>注:</label><br/>
-            <p><strong>新病人</strong>请直接点击<strong>新病人预约</strong>。</p>
-            <p><strong>老病人</strong>请正确填写<strong>就诊卡号</strong>与<strong>姓名</strong>后点击<strong>老病人预约</strong>。</p>  
-        </div>  
-        <div data-role="footer" id="footer" data-position="fixed">  
-            <h4>台州市立医院-信息中心©2015</h4>  
-        </div>  
-    </div>  
+        </form>
+
+        <input type="button" name="ok" value="核对无误"/>
+
+    </div>
+    <a href="#ChooseDroctor" class="ui-btn-active ui-state-persist">c</a>
+
+</div>
 </body>
 </html>

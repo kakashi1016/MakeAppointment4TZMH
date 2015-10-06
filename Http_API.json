@@ -1,0 +1,226 @@
+获取病人信息
+Request：
+	GET：
+	http://122.226.141.18:27016/wsgh/AjaxHelper.aspx?action=patients&cardno=31683536&name=%E6%9D%A8%E9%AA%9E%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20
+	POST：
+	action=patients
+	cardno=31683536
+	name=杨骞
+Response:
+	OK:
+		{
+		  "cardnumber": "000134750500047495",
+		  "mrn": "31683536",
+		  "pname": "杨骞",
+		  "series": "1",
+		  "psex": "M",
+		  "age": "27",
+		  "paddress": "浙江省台州市椒江区翠华新村３幢１单元４０２室",
+		  "service": "10",
+		  "ageunit": "Y",
+		  "pcid": "331002198810160636",
+		  "pphone": "18658680915"
+		}
+	Error:
+	{}
+专家，type=2
+	获取科室：
+		http://122.226.141.18:27016/wsgh/AjaxHelper.aspx
+		POST:
+			CdateEX=2015/9/26
+			action=dept
+			ampm=2
+			type=2
+		OK:
+			[
+			  {
+			    "deptid": "211",
+			    "deptname": "儿科(专家)",
+			    "groupid": ""
+			  },
+			  {
+			    "deptid": "308",
+			    "deptname": "妇产科(专家)",
+			    "groupid": ""
+			  },
+			  {
+			    "deptid": "314",
+			    "deptname": "中医科(专家)",
+			    "groupid": ""
+			  },
+			  {
+			    "deptid": "388",
+			    "deptname": "疼痛门诊(专家)",
+			    "groupid": ""
+			  }
+			]	
+	获取专家：
+		POST：
+			CdateEX=2015/9/26
+			action=doc
+			ampm=2
+			dept=308
+		OK：
+			[
+			  {
+			    "empid": "0705",
+			    "name": "赵淑清",
+			    "groupid": "0100D"
+			  },
+			  {
+			    "empid": "8219",
+			    "name": "蔡仙丽",
+			    "groupid": "0100D"
+			  }
+			]
+	获取号段：
+		POST：
+			CdateEX=2015/9/26
+			action=time
+			ampm=2
+			dept=308
+			doctor=0705
+			groupid=0100D
+		OK：
+		[
+		  {
+		    "Code": "7",
+		    "Value": "14:00-14:30",
+		    "AmPm": "2",
+		    "Visital": "0",
+		    "selectValue": "14:00-14:30"
+		  },
+		  {
+		    "Code": "8",
+		    "Value": "14:00-14:30",
+		    "AmPm": "2",
+		    "Visital": "0",
+		    "selectValue": ""
+		  },
+		  {
+		    "Code": "9",
+		    "Value": "14:00-14:30",
+		    "AmPm": "2",
+		    "Visital": "0",
+		    "selectValue": ""
+		  }
+		]
+			
+普通，type=1
+	获取科室：
+		http://122.226.141.18:27016/wsgh/AjaxHelper.aspx
+		POST:
+			CdateEX=2015/9/26
+			action=dept
+			ampm=2
+			type=1
+		OK:
+			[
+			  {
+			    "deptid": "02",
+			    "deptname": "心血管内科",
+			    "groupid": "01003"
+			  },
+			  {
+			    "deptid": "04",
+			    "deptname": "普外科",
+			    "groupid": "01003"
+			  },
+			  {
+			    "deptid": "05",
+			    "deptname": "神经外科",
+			    "groupid": "01003"
+			  }
+			]
+	获取号段：
+		POST：
+			CdateEX=2015/9/26
+			action=time
+			ampm=2
+			dept=07
+			doctor=
+			groupid=01002
+		OK：
+			[
+			  {
+			    "Code": "12",
+			    "Value": "15：00—15：30",
+			    "AmPm": "2",
+			    "Visital": "0",
+			    "selectValue": ""
+			  },
+			  {
+			    "Code": "15",
+			    "Value": "15：30—16：00",
+			    "AmPm": "2",
+			    "Visital": "0",
+			    "selectValue": ""
+			  },
+			  {
+			    "Code": "16",
+			    "Value": "15：30—16：00",
+			    "AmPm": "2",
+			    "Visital": "0",
+			    "selectValue": ""
+			  }
+			]			
+
+
+专科，type=3
+	获取科室：
+		http://122.226.141.18:27016/wsgh/AjaxHelper.aspx
+		POST:
+			CdateEX=2015/9/26
+			action=dept
+			ampm=2
+			type=3
+		OK:
+			[
+			  {
+			    "deptid": "796",
+			    "deptname": "颈椎病专科门诊",
+			    "groupid": ""
+			  },
+			  {
+			    "deptid": "1140011",
+			    "deptname": "医疗美容科",
+			    "groupid": ""
+			  }
+			]
+	获取号段：
+		POST：
+			CdateEX=2015/9/26
+			action=time
+			ampm=1
+			dept=116
+			doctor=
+			groupid=01003
+		OK：
+			[
+			  {
+			    "Code": "4",
+			    "Value": "8：30—9：00",
+			    "AmPm": "1",
+			    "Visital": "0",
+			    "selectValue": "8：30—9：00"
+			  },
+			  {
+			    "Code": "7",
+			    "Value": "9：00—9：30",
+			    "AmPm": "1",
+			    "Visital": "0",
+			    "selectValue": ""
+			  },
+			  {
+			    "Code": "8",
+			    "Value": "9：00—9：30",
+			    "AmPm": "1",
+			    "Visital": "0",
+			    "selectValue": ""
+			  }
+			]		
+		Error:
+			[]
+			
+
+

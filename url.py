@@ -1,10 +1,12 @@
 # -*- coding:utf-8 -*-
+
+
 __author__ = 'Qian'
 
 
 from MyHandlers.Demo import DemoHandler
 from MyHandlers.ClinicAppointment import LoginHandler,ValidateHandler,ChooseDroctorHandler, TestHandler
-
+from MyHandlers.AjaxHandler import PatientInfoAjaxHandler
 url=[
     (r'/', DemoHandler),
     (r'/Login/', LoginHandler),
@@ -12,5 +14,7 @@ url=[
     (r'/ChooseDoctor/', ChooseDroctorHandler),
     (r'/MakeAppointment/', ChooseDroctorHandler),
     (r'/Test/', TestHandler),
+    (r'/Test/Ajax/', PatientInfoAjaxHandler),
+
 
     ]
