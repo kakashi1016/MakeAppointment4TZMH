@@ -4,9 +4,15 @@
     <meta charset="utf-8">
     <title>市立医院移动预约平台</title>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
+
+    <!--
     <link href="{{ static_url('css/JQM/jquery.mobile-1.4.5.min.css') }}" rel="stylesheet">
     <script src="{{ static_url('js/JQM/jquery.4.JQM.min.js') }}"></script>
     <script src="{{ static_url('js/JQM//jquery.mobile-1.4.5.min.js') }}"></script>
+    -->
+    <link href="http://cdn.bootcss.com/jquery-mobile/1.4.5/jquery.mobile.min.css" rel="stylesheet">
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/jquery-mobile/1.4.5/jquery.mobile.min.js"></script>
 </head>
 <script type="text/javascript">
     function ShowForm(type, btn) {
@@ -38,23 +44,53 @@
                 data: {
                     _xsrf: getCookie('_xsrf'),
                     action: 'patients',
-                    cardno: '31683536',//str_mrn,
-                    name: '杨骞'//str_pName//encodeURI(encodeURI(str_pName))
+                    cardno: str_mrn,
+                    name: str_pName//encodeURI(encodeURI(str_pName))
                 },
                 cache: false,
                 dataType: 'json',
                 success: function (data) {
-                    if (data.msg == "false") //服务器返回false，就将validatePassword2的值改为pwd2Error，这是异步，需要考虑返回时间
+                    if (data.mrn.length > 3) //服务器返回false，就将validatePassword2的值改为pwd2Error，这是异步，需要考虑返回时间
                     {
+                        $('#pMrn2').val(data.mrn);
+                        $('#pName2').val(data.pname);
+                        $('#pICID').val(data.pcid);
+                        $('#pAge').val(data.age);
+                        $('#pAgeUnit').val(data.ageunit);
+                        $('#pPhone').val(data.pphone);
+                        $('#pAddress').val(data.paddress);
+                        if ('F' == data.psex) {
+                            $("#female").attr("checked", "checked");
+                            $("#male").removeAttr("checked");
+                            $("#female").click();
+                        } else {
+                            $("#male").attr("checked", "checked");
+                            $("#female").removeAttr("checked");
+                            $("#male").click();
 
-                        return;
+                        }
+
+                        $('#pMrn2').attr("disabled", true);
+                        $('#pName2').attr("disabled", true);
+                        $('#pICID').attr("disabled", true);
+                        $('#pAge').attr("disabled", true);
+                        $('#pAgeUnit').attr("disabled", true);
+                        $("#female").attr("disabled", true);
+                        $("#male").attr("disabled", true);
+                        $("#pAgeUnit").attr("disabled", true);
+
+
+
+                        $.mobile.changePage("#Validate",{ transition: "slideup" });
+                        return true;
+                    } else {
+                        return false;
                     }
                 },
                 error: function (data) {
                     alert(data);
                 }
             });
-
 
 
         }
@@ -89,7 +125,7 @@
 
         <button id="btn_old" onclick="ShowForm(1,this)">老病人预约</button>
         <div id="hiddenDIV" align="center" style="display:none;padding:5px 20px 20px 20px;">
-            <form action="" method="post">
+            <form action="" method="get">
                 {% raw xsrf_form_html() %}
 
                 <div data-role="fieldcontain">
@@ -101,21 +137,18 @@
                     <label for="pName" style="text-align:left;">姓名</label>
                     <input type="text" name="pName" id="pName" value=""/>
                 </div>
-                <div id="loginTag" style="text-align:left;">rtrtrt3</div>
+                <div style="text-align:left;"><span style="color:red">注:</span><span id="loginTag"></span></div>
 
-
-                <div class="ui-grid-a">
-                    <div class="ui-block-a">
-                    </div>
-                    <div class="ui-block-b">
-                        <button onclick="GetPatienInfo()">下一步</button>
-                    </div>
-                </div>
                 <br/>
-                <br/>
-
 
             </form>
+            <div class="ui-grid-a">
+                <div class="ui-block-a">
+                </div>
+                <div class="ui-block-b">
+                    <button onclick="GetPatienInfo()">下一步</button>
+                </div>
+            </div>
         </div>
 
         <button id="btn_new" onclick="ShowForm(0,this)">新病人预约</button>
@@ -131,19 +164,7 @@
     </div>
 </div>
 <div data-role="page" id="Validate" data-fullscreen="true" data-theme="b">
-    <script type="javascript">
-        function HideandShowForm(int
-        type
-        )
-        {
-            if (type == 1) {
 
-            } else {
-
-            }
-
-        }
-    </script>
     <!--<div data-role="header" data-position="fixed">    -->
     <!--<h1>个人信息核对</h1>   -->
     <!--</div>  -->
@@ -152,20 +173,22 @@
 
             <div data-role="fieldcontain">
                 <label for="pMrn">就诊号</label>
-                <input type="number" name="pMrn" id="pMrn" value=""/>
+                <input type="number" name="pMrn" id="pMrn2" value=""/>
             </div>
 
             <div data-role="fieldcontain">
                 <label for="pName">姓名</label>
-                <input type="text" name="pName" id="pName" value=""/>
+                <input type="text" name="pName" id="pName2" value=""/>
             </div>
             <hr style="height:3px;border:none;border-top:2px double red;"/>
 
 
             <div data-role="fieldcontain">
                 <label for="pICID">身份证号</label>
-                <input type="number" name="pICID" id="pMrn" value=""/>
+                <input type="text" name="pICID" id="pICID" value=""/>
             </div>
+            {% raw xsrf_form_html() %}
+
 
             <div data-role="fieldcontain">
                 <label for="pAge">年龄</label>
