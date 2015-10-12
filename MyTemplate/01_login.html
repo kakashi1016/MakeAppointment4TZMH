@@ -8,7 +8,7 @@
     <!--
     <link href="{{ static_url('css/JQM/jquery.mobile-1.4.5.min.css') }}" rel="stylesheet">
     <script src="{{ static_url('js/JQM/jquery.4.JQM.min.js') }}"></script>
-    <script src="{{ static_url('js/JQM//jquery.mobile-1.4.5.min.js') }}"></script>
+    <script src="{{ static_url('js/JQM/jquery.mobile-1.4.5.min.js') }}"></script>
     -->
     <link href="http://cdn.bootcss.com/jquery-mobile/1.4.5/jquery.mobile.min.css" rel="stylesheet">
     <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
@@ -26,6 +26,24 @@
         }
 
         return type;
+    }
+    function ArrangeSubmitData() {
+        var mrn = $('#pMrn2').val();
+        var pName = $('#pName2').val();
+        var pPCID = $('#pICID').val();
+        var pAge = $('#pAge').val();
+        var pAgeUnit = $('#pAgeUnit').val();
+        var pPhone = $('#pPhone').val();
+        var pAddress = $('#pAddress').val();
+        var pGender = $('input:radio[name=gender]:checked').val();
+
+        $('#pGender_2').val(pGender);
+        $('#pAgeUnit_2').val(pAgeUnit);
+
+        $('#validForm').submit();
+
+        return true;
+
     }
     function GetPatienInfo() {
         var str_mrn = $('#pMrn').val();
@@ -70,18 +88,16 @@
 
                         }
 
-                        $('#pMrn2').attr("disabled", true);
-                        $('#pName2').attr("disabled", true);
-                        $('#pICID').attr("disabled", true);
-                        $('#pAge').attr("disabled", true);
+                        $('#pMrn2').attr("readonly", true);
+                        $('#pName2').attr("readonly", true);
+                        $('#pICID').attr("readonly", true);
+                        $('#pAge').attr("readonly", true);
                         $('#pAgeUnit').attr("disabled", true);
                         $("#female").attr("disabled", true);
                         $("#male").attr("disabled", true);
-                        $("#pAgeUnit").attr("disabled", true);
 
 
-
-                        $.mobile.changePage("#Validate",{ transition: "slideup" });
+                        $.mobile.changePage("#Validate", {transition: "slideup"});
                         return true;
                     } else {
                         return false;
@@ -169,7 +185,7 @@
     <!--<h1>个人信息核对</h1>   -->
     <!--</div>  -->
     <div data-role="content">
-        <form action="" method="post">
+        <form action="" id="validForm" method="post">
 
             <div data-role="fieldcontain">
                 <label for="pMrn">就诊号</label>
@@ -234,9 +250,13 @@
                 <input type="text" name="pAddress" id="pAddress" value=""/>
             </div>
             <br/>
+
+            <input type="hidden" name="pGender_2" id="pGender_2"/>
+            <input type="hidden" name="pAgeUnit_2" id="pAgeUnit_2">
+
+            <input type="button" name="ok" onclick="ArrangeSubmitData();" value="核对无误"/>
         </form>
 
-        <input type="button" name="ok" value="核对无误"/>
 
     </div>
     <a href="#ChooseDroctor" class="ui-btn-active ui-state-persist">c</a>
