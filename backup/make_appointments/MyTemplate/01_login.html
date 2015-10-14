@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>市立医院移动预约平台</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link href="{{ static_url('css/JQM/jquery.mobile-1.4.5.min.css') }}" rel="stylesheet" >
+    <script src="{{ static_url('js/JQM/jquery.4.JQM.min.js') }}"></script>
+    <script src="{{ static_url('js/JQM//jquery.mobile-1.4.5.min.js') }}"></script>
+</head>
+
+<body>
+	<div data-role="page" id="Login" data-theme="b">  
+        <!--<div data-role="header" id="LoginHeader" data-position="fixed">    -->
+            <!--<h1>市立医院移动预约平台</h1>   -->
+        <!--</div>  -->
+        <div data-role="content" id="Logincontent"> 
+            <br/> 
+            <form action="" method="post">  
+              
+                <div data-role="fieldcontain">  
+                    <label for="pMrn">就诊号</label>  
+                    <input type="number" name="pMrn" id="pMrn" value=""  />  
+                </div>   
+                
+                <div data-role="fieldcontain">  
+                    <label for="pName">姓名</label>  
+                    <input type="text" name="pName" id="pName" value=""  />  
+                </div>   
+                <br/>  
+                <input type="button" name="oldPatient" value="老病人预约"  />  
+                <input type="button" name="newPatient" value="新病人预约"  />  
+            </form>
+            <br/>
+            <hr style="height:3px;border:none;border-top:3px double red;" />
+            <a href="/PatientValidate/">test</a>
+            <label>注:</label><br/>
+            <p><strong>新病人</strong>请直接点击<strong>新病人预约</strong>。</p>
+            <p><strong>老病人</strong>请正确填写<strong>就诊卡号</strong>与<strong>姓名</strong>后点击<strong>老病人预约</strong>。</p>  
+        </div>  
+        <div data-role="footer" id="footer" data-position="fixed">  
+            <h4>台州市立医院-信息中心©2015</h4>  
+        </div>  
+    </div>  
+</body>
+</html>

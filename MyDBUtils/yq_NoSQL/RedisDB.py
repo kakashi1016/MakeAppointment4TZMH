@@ -4,6 +4,7 @@ __author__ = 'Qian'
 import redis
 
 class RedisDBConfig:
+    #HOST = '127.0.0.1'
     HOST = '115.159.90.211'
     PORT = 6379
     DBID = 6

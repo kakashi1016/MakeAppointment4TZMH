@@ -5,7 +5,8 @@ __author__ = 'Qian'
 
 
 from MyHandlers.Demo import DemoHandler
-from MyHandlers.ClinicAppointment import LoginHandler,ValidateHandler,ChooseDroctorHandler, TestHandler
+from MyHandlers.ClinicAppointment import LoginHandler,ValidateHandler,ChooseDroctorHandler, TestHandler, \
+    GetDoctorPlanHandler
 from MyHandlers import AjaxHandler
 url=[
     (r'/', DemoHandler),
@@ -16,6 +17,9 @@ url=[
 
 
     (r'/MakeAppointment/', ChooseDroctorHandler),
+    (r'/GetDoctorPlan/', GetDoctorPlanHandler),
+
+
     (r'/Test/', TestHandler),
 
 
@@ -23,6 +27,9 @@ url=[
     (r'/Ajax/getDEPT/',AjaxHandler.DepartmentAjaxHandler ),
     (r'/Ajax/getDoctor/',AjaxHandler.DoctorAjaxHandler ),
     (r'/Ajax/getClinicTime/',AjaxHandler.ClinicTimeAjaxHandler ),
+    (r'/Ajax/getPlan/',AjaxHandler.DoctorPlanAjaxHandler ),
+
+
 
 
     ]

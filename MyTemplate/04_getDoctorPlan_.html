@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h4 style="text-align: center">台州市立医院专家排班表</h4>
+    <div class="row">
+        <select class="col-xs-4 col-sm-4 col-md-3 col-lg-3 col-xs-offset-8 col-sm-offset-8 col-md-offset-9 col-md-offset-9" >
+            <option >周一</option>
+            <option >周二</option>
+            <option >周三</option>
+            <option >周四</option>
+            <option >周五</option>
+            <option >周六</option>
+            <option >周日</option>
+        </select>
+    </div>
+    <div class="row btn-group">
+        <button type="button" class="btn btn-default">周一</button>
+        <button type="button" class="btn btn-default">周二</button>
+        <button type="button" class="btn btn-default">周三</button>
+        <button type="button" class="btn btn-default">周四</button>
+        <button type="button" class="btn btn-default">周五</button>
+        <button type="button" class="btn btn-default">周六</button>
+        <button type="button" class="btn btn-default">周日</button>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <table class="table table-condensed">
+                <caption><h4>周一</h4></caption>
+                <thead>
+                <tr class="active">
+                    <th>科室</th>
+                    <th>上午</th>
+                    <th>下午</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="success">
+                    <td colspan="3"><strong>中西医结合内科、老年病科(专家)</strong></td>
+                </tr>
+                <tr><td></td><td>Doc1<br>Doc2<br>Doc3</td><td>Doc5</td>
+                </tr>
+                <tr class="danger">
+                    <td colspan="3"><strong>浙二医院合作科</strong></td>
+                </tr>
+                <tr><td></td><td>Doc1<br>Doc2<br>Doc3</td><td>Doc5</td>
+                </tr>
+                <tr class="warning">
+                    <td colspan="3">口腔科(专家)</td>
+                </tr>
+                <tr><td></td><td>Doc1<br>Doc2<br>Doc3</td><td>Doc5</td>
+                </tr>
+                <tr class="info">
+                    <td colspan="3">感染科.肝病专科(专家)</td>
+                </tr>
+                <tr><td></td><td>Doc1<br>Doc2<br>Doc3</td><td>Doc5</td></tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+    <div class="row">
+
+        <div class="list-group col-xs-9 col-sm-9 col-md-11 col-lg-11">
+            <a href="#" class="list-group-item active">
+                <h4 class="list-group-item-heading">
+                    周一
+                </h4>
+            </a>
+            <a href="#" class="list-group-item">
+                <h4 class="list-group-item-heading">
+                    骨科(来自尼玛星球的华山医院)
+                </h4>
+
+                <p class="list-group-item-text">
+                    <br>
+                    <strong>上午:</strong><span>医生1,医生2,医生3</span><br>
+                    <strong>下午:</strong><span>医生1,医生2,医生3</span><br>
+                </p>
+            </a>
+            <a href="#" class="list-group-item">
+                <h4 class="list-group-item-heading">儿科(来自尼玛星球的华山医院)</h4>
+
+                <p class="list-group-item-text"><br>
+                    <strong>上午:</strong><span>医生1,医生2,医生3</span><br>
+                    <strong>下午:</strong><span>医生1,医生2,医生3</span><br>
+                </p>
+            </a>
+        </div>
+        <div class="row btn-group-vertical col-xs-3 col-sm-3 col-md-1 col-lg-1">
+            <button type="button" class="btn btn-info">周一</button>
+            <button type="button" class="btn btn-default">周二</button>
+            <button type="button" class="btn btn-default">周三</button>
+            <button type="button" class="btn btn-default">周四</button>
+            <button type="button" class="btn btn-default">周五</button>
+            <button type="button" class="btn btn-default">周六</button>
+            <button type="button" class="btn btn-default">周日</button>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

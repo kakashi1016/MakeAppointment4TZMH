@@ -57,6 +57,9 @@ class ChooseDroctorHandler(MyBaseHandler):
                                 's': ''.join([tmp, '(', MyWeekDay4Chiness[dTmp.strftime('%w')], ')'])})
         self.render("03_chooseDroctor.html", dList = date4Choose)
 
+class GetDoctorPlanHandler(MyBaseHandler):
+    def get(self):
+        self.render("04_getDoctorPlan.html")
 
 class TestHandler(MyBaseHandler):
     def get(self):

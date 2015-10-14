@@ -4,7 +4,7 @@ __author__ = 'Qian'
 import urllib
 import tornado
 from tornado.httpclient import AsyncHTTPClient, HTTPRequest
-
+import json
 
 
 class PatientInfoAjaxHandler(tornado.web.RequestHandler):
@@ -79,3 +79,31 @@ class ClinicTimeAjaxHandler(tornado.web.RequestHandler):
         response = yield  tornado.gen.Task(myClient.fetch, request)
         self.write(response.body)
         self.finish()
+
+
+class DoctorPlanAjaxHandler(tornado.web.RequestHandler):
+    @tornado.web.asynchronous
+    @tornado.gen.engine
+    def post(self):
+
+        url = 'http://122.226.141.18:28811/register/getplan/' +  self.get_argument('inW', '1') +'/'
+        myClient = AsyncHTTPClient()
+
+        response = yield  tornado.gen.Task(myClient.fetch, url)
+        self.write(response.body)
+        self.finish()
+
+
+
+
+
+def Prepare4DEPT(ampm, date, type):
+    inArgs ={};
+    inArgs['action'] = 'dept'
+    inArgs['ampm'] = ampm
+    inArgs['CdateEX'] = date
+    inArgs['type'] =type
+    request = HTTPRequest('http://122.226.141.18:27016/wsgh/AjaxHelper.aspx',method='POST',
+                          body=urllib.urlencode(inArgs))
+    return request
+

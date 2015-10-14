@@ -53,6 +53,7 @@ finally:
         httpClient.close()
 
 from MyDBUtils.MyUtils import MyWeekDay4Chiness
+
 date4Choose = [];
 today = datetime.datetime.now()
 if (today.hour >= 16):
@@ -62,13 +63,56 @@ else:
 
 for i in range(dStart, dStart + 3):
     print i
-    dTmp = today + datetime.timedelta(days = i)
+    dTmp = today + datetime.timedelta(days=i)
     print dTmp
     tmp = dTmp.strftime("%Y-%m-%d")
-    date4Choose.append({'id': 'date' + str(i-dStart),'v': tmp, 's': ''.join([tmp, '(', MyWeekDay4Chiness[dTmp.weekday().__str__()], ')'])})
+    date4Choose.append({'id': 'date' + str(i - dStart), 'v': tmp,
+                        's': ''.join([tmp, '(', MyWeekDay4Chiness[dTmp.weekday().__str__()], ')'])})
 
 print date4Choose
 
 import time
+
 print int(time.strftime("%w"))
 print type(int(time.strftime("%w")))
+
+aaa = dict()
+aaa['123']=34
+print aaa
+
+
+
+
+
+
+
+aaa0 = "Hatake@2015-10-14";
+aaa = bytearray(aaa0, encoding="utf-8")
+print len(aaa)
+print type(aaa)
+
+text= [aaa[0:len(aaa)/2],aaa[len(aaa)/2:len(aaa)/2+1],aaa[len(aaa)/2+1:len(aaa)]]
+
+
+print text
+tmp = [];
+for i in range(0,3,1):
+    text[i][0] = 255 - text[i][0]
+    tmp.insert(2 -i, text[i])
+
+print text
+print tmp
+
+import  MyUtils
+aaaa = MyUtils.Encode4TZMH(aaa0)
+print '=========original========='
+print aaa0
+print '=========encode========='
+print aaaa
+print '=========decode========='
+aaaa = MyUtils.Decode4TZMH(aaaa)
+print aaaa
+
+print 5/2
+
+
