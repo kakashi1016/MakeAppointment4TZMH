@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            ShowPlan();
+        });
+        function ShowPlan() {
+            var weekDay = $('#weekDay').val();
+            var myUrl = '/Ajax/getPlan/';
+            var ajaxData = {'_xsrf': $("input[name='_xsrf']").val(), 'inW': weekDay};
+
+            $.ajax({
+                type: 'POST',
+                url: myUrl,
+                data: ajaxData,
+                dataType: 'json',
+                success: function (data) {
+                    if (!data.isSuccess) {
+                        alert(data.msg);
+                    } else {
+                        var $table = $('#tableBody');
+                        $table.empty();
+                        var amList = '';
+                        var pmList = '';
+                        var myDict = data.dict;
+                        var reg = new RegExp("#", "g"); //创建正则RegExp对象
+                        for (var deptname in myDict) {
+                            amList = myDict[deptname].amDoctorList;
+                            pmList = myDict[deptname].pmDoctorList;
+                            amList = amList.replace(reg, '<br/>');
+                            pmList = pmList.replace(reg, '<br/>');
+                            $table.append('<tr class="info"><td colspan="3"><strong>'
+                                    + myDict[deptname].deptName + '</strong></td></tr><tr><td></td><td>'
+                                    + amList + '</td><td>' + pmList + '</td></tr>');
+                        }
+                        $('#title').text($('#weekDay').find("option:selected").text());
+
+                    }
+
+                }
+            });
+        }
+
+    </script>
+</head>
+<body>
+<div class="container">
+    <h4 style="text-align: center">台州市立医院专家排班表</h4>
+
+    <div class="row">
+        <select id="weekDay" onchange="ShowPlan();"
+                class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-offset-9 col-sm-offset-9 col-md-offset-9 col-md-offset-9">
+            <option value="1">周一</option>
+            <option value="2">周二</option>
+            <option value="3">周三</option>
+            <option value="4">周四</option>
+            <option value="5">周五</option>
+            <option value="6">周六</option>
+            <option value="7">周日</option>
+        </select>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="dropdown col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-offset-9 col-sm-offset-9 col-md-offset-9 col-md-offset-9">
+            <button type="button" class="btn dropdown-toggle col-xs-12 col-sm-12 col-md-12 col-lg-12" id="dropdownMenu1"
+                    data-toggle="dropdown">查询日期<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1" href="#">周一</a>
+                </li>
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1" href="#">周二</a>
+                </li>
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1" href="#">周三</a>
+                </li>
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1" href="#">周四</a>
+                </li>
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1" href="#">周五</a>
+                </li>
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1" href="#">周六</a>
+                </li>
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1" href="#">周日</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <table class="table table-condensed">
+                <thead>
+                {% raw xsrf_form_html() %}
+                <tr class="active">
+                    <td colspan="3"><h4><b id="title">周一</b></h4></td>
+                </tr>
+                <tr class="active">
+                    <th width='40%'></th>
+                    <th width='30%'>上午</th>
+                    <th width='30%'>下午</th>
+                </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+</body>
+</html>
