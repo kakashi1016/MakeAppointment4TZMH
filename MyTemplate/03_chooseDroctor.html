@@ -41,36 +41,42 @@
             var c = document.cookie.match("\\b" + name + "=([^;]*)\\b");
             return c ? c[1] : undefined;
         }
-        function GetDoctors(deptID, GroupID,type) {
+        function ToChooseDoctor(obj) {
+            var $obj=$(obj);
+            $('#tmpDept').val($obj.attr("deptid"));
+            $('#showDept').text('已选：'+$obj.text());
+            $('#nav2').click();
+
+        }
+
+        function GetDoctors() {
+            var deptID = $('#tmpDept').val();
             var tmp = {};
             var rtn =null;
             var ajaxData = null;
-
-            tmp['dept'] = deptID;
-            tmp['groupid'] = GroupID;
-
-
-            switch (type) {
-                case 1:
-                    //普通
-                      rtn   = PrepareInfo(0, {});
-
-                    break;
-                case 2:
-                        //专家
-                        rtn   = PrepareInfo(0, null);
-
-                    break;
-                default :
-                    //专科
-
-                    break;
-
-
-            }
-            tmp['dept'] = deptID;
-            if(null == deptID) {
-                tmp['dept'] = '';
+            var myUrl = "/Ajax/getDoctor/";
+            tmp['dept'] = "" + deptID;
+            rtn = PrepareInfo(1, tmp);
+            if (!rtn[0]) {
+                alert(rtn[3]);
+            }else {
+                var ajaxData = Array2Object(rtn[1]);
+                $.ajax({
+                    type: 'POST',
+                    url: myUrl,
+                    data: ajaxData,
+                    dataType: 'json',
+                    success: function (data) {
+                        DRCTORSLIST.length = 0;
+                        DRCTORSLIST = data;
+                        $('#docList').empty();
+                        for(var i=0; i<data.length;i++){
+                            $('#docList').append('<div data-role="collapsible"><h3 onclick="alert(11111)">'
+                            +data[i]['name']+'</h3><fieldset data-role="fieldcontain"></fieldset></div>');
+                        }
+                        $( "#docList" ).collapsibleset( "refresh" );
+                    }
+                });
             }
 
         };
@@ -92,14 +98,15 @@
                         DEPTLIST = data;
                         $('#deptList').empty();
                         for(var i=0; i<data.length;i++){
-                            $('#deptList').append("<li><a href='#'>"+ data[i]['deptname'] + "</a></li>");
+                            $('#deptList').append("<li><a href='#' deptID='"+ data[i]['deptid']
+                                    +"' onclick='ToChooseDoctor(this)'>"+ data[i]['deptname'] + "</a></li>");
                         }
                         $('#deptList').listview('refresh');
+
                     }
                 });
             }
-        }
-        ;
+        };
         function Array2Object(inObj) {
             var rtn ={};
           for (var i in inObj)  {
@@ -107,82 +114,69 @@
           }
             return rtn;
         };
-
         function PrepareInfo(type, obj) {
             var isValid = false;
             var info = new Array();
             var msg = '';
-            var tmp = "";
+            var tmp = '';
             var _xsrf= GetCookie('_xsrf');
-
-            tmp = $('#radio_date input[name="myDate"]:checked ').val();
+            tmp = $('#radio_date input[name="myDate"]:checked').val();
             info['CdateEX'] = tmp;
-            tmp = $('#radio_ampm input[name="ampm"]:checked ').val();
+            tmp = $('#radio_ampm input[name="ampm"]:checked').val();
             info['ampm'] = tmp;
-            tmp = $('#radio_type input[name="clinicType"]:checked ').val();
+            tmp = $('#radio_type input[name="clinicType"]:checked').val();
             info['type'] = tmp;
             info['_xsrf'] = _xsrf;
             tmp = $('#tmpDept').val();
-
             switch (type) {
                 case 0://获取科室
                     info['action'] = 'dept';
                     isValid = true;
                     break;
                 case 1://获取医生
-
-
                     info['action'] = 'doc';
                     if (tmp.length < 2) {
                         msg = '请先选择科室！';
                         isValid = true;
-
                     } else {
                         info['dept'] = tmp;
                         isValid = true;
                     }
-
                     break;
                 default : //获取号段
                     info['action'] = 'time';
                     if (tmp.length < 2) {
                         msg = '请先选择科室！';
                         isValid = true;
-
                     } else {
                         info['dept'] = tmp;
                         isValid = true;
                     }
-                    break
+                    break;
             }
-
             if (isValid && (type != 0)) {
                 for (var p in obj) {
                     if (typeof ( obj [p]) != "function") {
                         info[p] = obj [p];
                     }
                 }
-
             }
             return [isValid, info, msg];
-        }
-
+        };
     </script>
-
     <div data-role="tabs">
         {% raw xsrf_form_html() %}
         <div data-role="navbar">
             <ul>
-                <li><a id="nav0" href="#one" data-icon="search" data-theme="b" data-ajax="false">日期</a></li>
-                <li><a id="nav1" href="#two" data-icon="home" data-theme="b" data-ajax="false">科室</a></li>
-                <li><a id="nav2" href="#three" data-icon="check" data-theme="b" data-ajax="false">医生号段</a></li>
+                <li><a id="nav0" onclick="" href="#one" data-icon="search" data-theme="b" data-ajax="false">日期</a></li>
+                <li><a id="nav1" onclick="GetDept()" href="#two" data-icon="home" data-theme="b" data-ajax="false">科室</a></li>
+                <li><a id="nav2" onclick="GetDoctors()" href="#three" data-icon="check" data-theme="b" data-ajax="false">医生号段</a></li>
             </ul>
         </div>
         <div id="one" class="ui-content">
             <div id="radio_date">
                 <fieldset data-role="controlgroup">
                     <legend>就诊日期</legend>
-
                     {% for mydate in dList %}
                     <label for="{{ mydate['id'] }}">{{ mydate['s'] }}</label>
                     <input type="radio" name="myDate" id="{{ mydate['id'] }}" value="{{mydate['v'] }}">
@@ -190,8 +184,6 @@
 
                 </fieldset>
             </div>
-
-
             <div id="radio_ampm">
                 <fieldset data-role="controlgroup" data-type="horizontal">
                     <legend>时段</legend>
@@ -201,7 +193,6 @@
                     <input type="radio" name="ampm" id="pm" value="2">
                 </fieldset>
             </div>
-
             <div id="radio_type">
                 <fieldset data-role="controlgroup" data-type="horizontal">
                     <legend>挂号类型</legend>
@@ -216,31 +207,39 @@
 
             <br/>
 
-            <input type="button" onclick="GetDept();" value="下一步"/>
+            <input type="button" onclick="$('#nav1').click();" value="下一步"/>
         </div>
         <div id="two" class="ui-content">
             <input id="tmpDept" type="hidden">
             <h4 id="showDept"></h4>
             <ul id="deptList" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="输入科室名，支持模糊查询...">
-                <li><a href="#">皮肤科</a></li>
-                <li><a href="#">五官科</a></li>
-                <li><a href="#">保健科</a></li>
-                <li><a href="#">五官科</a></li>
-                <li><a href="#">保健科</a></li>
-                <li><a href="#">五官科</a></li>
-                <li><a href="#">保健科</a></li>
+                <li><a href="#three">皮肤科</a></li>
+                <li><a href="#three">五官科</a></li>
+                <li><a href="#three">保健科</a></li>
+                <li><a href="#three">五官科</a></li>
+                <li><a href="#three">保健科</a></li>
+                <li><a href="#three">五官科</a></li>
+                <li><a href="#three">保健科</a></li>
             </ul>
         </div>
         <div id="three" class="ui-content">
-            <div data-role="collapsible-set">
+            <input id="tmpDoctor" type="hidden">
+            <input id="tmpTime" type="hidden">
+            <div data-role="collapsible-set" id="docList">
+
+
+
+
+
+
                 <div data-role="collapsible" data-collapsed="false">
-                    <h3>蔡志毅</h3>
+                    <h3 onclick="alert('22222222')">蔡志毅</h3>
                     <fieldset data-role="fieldcontain">
                         <label>号段</label>
                         <select name="day" id="clinicTime">
                             <option value="01">1号，8:00-8:20</option>
                             <option value="02">2号，9:00-9:20</option>
-                            <option value="03" selected>3号，9:40-9:50</option>
+                            <option value="03" >3号，9:40-9:50</option>
                             <option value="04">4号，10:00-10:20</option>
                             <option value="05">5号，10:30-10:40</option>
                             <option value="06">6号，11:30-11:40</option>
@@ -289,32 +288,7 @@
 </div>
 
 
-<div data-role="page" id="confirm-Time" data-dialog="true">
 
-    <!-- 页眉部分start -->
-    <div data-role="header">
-        <h1>时段选择</h1>
-    </div>
-    <!-- 页眉部分end -->
-
-    <!-- content部分start -->
-    <div role="main" class="ui-content">
-        <fieldset data-role="fieldcontain">
-            <label for="clinicTime">号段</label>
-            <select name="day" id="clinicTime" data-native-menu="false">
-                <option value="01">1号，8:00-8:20</option>
-                <option value="02">2号，9:00-9:20</option>
-                <option value="03" selected>3号，9:40-9:50</option>
-                <option value="04">4号，10:00-10:20</option>
-                <option value="05">5号，10:30-10:40</option>
-                <option value="06">6号，11:30-11:40</option>
-            </select>
-        </fieldset>
-
-    </div>
-    <!-- content部分end -->
-
-</div>
 
 
 </body>
