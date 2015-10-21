@@ -57,9 +57,13 @@
             var myUrl = "/Ajax/getDoctor/";
             tmp['dept'] = "" + deptID;
             rtn = PrepareInfo(1, tmp);
+
             if (!rtn[0]) {
                 alert(rtn[3]);
             }else {
+
+                
+
                 var ajaxData = Array2Object(rtn[1]);
                 $.ajax({
                     type: 'POST',
@@ -277,7 +281,7 @@
                 </div>
             </div>
             <br/>
-            <input type="button" value="预约"/>
+            <input type="button" onclick="alert('a\ngfg\ndf\nfddsf对方答复\nfdsfdsf')" value="预约"/>
         </div>
     </div>
 

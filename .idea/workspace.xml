@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b8221563-7bf8-42da-befd-4ee4519c4a2e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyTemplate/03_chooseDroctor.html" afterPath="$PROJECT_DIR$/MyTemplate/03_chooseDroctor.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/url.py" afterPath="$PROJECT_DIR$/url.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MakeAppointments4TZMH.iws" />
@@ -20,7 +21,7 @@
     <SUITE FILE_PATH="coverage/MakeAppointments4TZMH$RedisDB.coverage" NAME="RedisDB Coverage Results" MODIFIED="1444022739333" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MyDBUtils/yq_NoSQL" />
     <SUITE FILE_PATH="coverage/MakeAppointments4TZMH$MyUtils.coverage" NAME="MyUtils Coverage Results" MODIFIED="1444831994609" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MyDBUtils" />
     <SUITE FILE_PATH="coverage/MakeAppointments4TZMH$RedisSession.coverage" NAME="RedisSession Coverage Results" MODIFIED="1444025225373" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MyRedisSession" />
-    <SUITE FILE_PATH="coverage/MakeAppointments4TZMH$server.coverage" NAME="server Coverage Results" MODIFIED="1444919779257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MakeAppointments4TZMH$server.coverage" NAME="server Coverage Results" MODIFIED="1445433914968" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -83,16 +84,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="03_chooseDroctor.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="03_chooseDroctor.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MyTemplate/03_chooseDroctor.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.375">
-              <caret line="28" column="6" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
-              <folding>
-                <marker date="1444898826000" expanded="true" signature="1414:11810" placeholder="..." />
-                <marker date="1444898826000" expanded="true" signature="6248:11705" placeholder="..." />
-                <marker date="1444898826000" expanded="true" signature="11758:11803" placeholder="..." />
-              </folding>
+            <state vertical-scroll-proportion="0.54285717">
+              <caret line="64" column="16" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="16" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -117,11 +114,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="url.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="url.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/url.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5355191">
-              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="13" column="44" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -171,8 +168,8 @@
         <option value="$PROJECT_DIR$/MyDBUtils/MyTestScript.py" />
         <option value="$PROJECT_DIR$/MyHandlers/AjaxHandler.py" />
         <option value="$PROJECT_DIR$/MyTemplate/04_getDoctorPlan.html" />
-        <option value="$PROJECT_DIR$/MyTemplate/03_chooseDroctor.html" />
         <option value="$PROJECT_DIR$/url.py" />
+        <option value="$PROJECT_DIR$/MyTemplate/03_chooseDroctor.html" />
       </list>
     </option>
   </component>
@@ -230,7 +227,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -427,6 +423,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -752,9 +749,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2253635" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22778675" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290653" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1179,22 +1176,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyTemplate/03_chooseDroctor.html">
+    <entry file="file://$PROJECT_DIR$/url.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.375">
-          <caret line="28" column="6" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
-          <folding>
-            <marker date="1444898826000" expanded="true" signature="1414:11810" placeholder="..." />
-            <marker date="1444898826000" expanded="true" signature="6248:11705" placeholder="..." />
-            <marker date="1444898826000" expanded="true" signature="11758:11803" placeholder="..." />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="44" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/url.py">
+    <entry file="file://$PROJECT_DIR$/MyTemplate/03_chooseDroctor.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5355191">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.54285717">
+          <caret line="64" column="16" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="16" />
           <folding />
         </state>
       </provider>

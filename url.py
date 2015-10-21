@@ -13,7 +13,6 @@ url=[
     (r'/Login/', LoginHandler),
     (r'/PatientValidate/', ValidateHandler),
     (r'/ChooseDoctor/', ChooseDroctorHandler),
-    (r'/MakeAppointment/', ChooseDroctorHandler),
 
 
     (r'/MakeAppointment/', ChooseDroctorHandler),
